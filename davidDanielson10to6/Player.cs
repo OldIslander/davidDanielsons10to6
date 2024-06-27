@@ -17,18 +17,19 @@ namespace davidDanielson10to6
         private Texture2D Texture { get; set; }
         private int height = 66;// David is big; he stands taller than a tile
         private int width = 54;
+        
         private int totalFrames = 4; // David's walk cycle is 4 frames in any direction
         private int currentFrame = 0;
         private int direction = 0; // Stores the last direction walked in. Used for animation
         private int currentDelay = 0; //Animation Delay
         private int delay = 6;
+        
         const int block = 48; // Length/height of 1 tile
         int cur = 0; //Keeps track of how many pixels have been traversed in a move
         private bool moving;
 
         private Vector2 position = new Vector2(96, 106); // David Starts here
         private Vector2 incrementor; //movement incrementor
-
         private Vector2 up = new Vector2(0, -2);
         private Vector2 down = new Vector2(0, 2);
         private Vector2 left = new Vector2(-2, 0);
