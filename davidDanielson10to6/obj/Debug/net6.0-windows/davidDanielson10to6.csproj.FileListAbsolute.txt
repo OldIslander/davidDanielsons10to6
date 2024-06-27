@@ -37,3 +37,4 @@ C:\Users\Sean G\source\repos\davidDanielson10to6\davidDanielson10to6\obj\Debug\n
 C:\Users\Sean G\source\repos\davidDanielson10to6\davidDanielson10to6\obj\Debug\net6.0-windows\ref\davidDanielson10to6.dll
 C:\Users\Sean G\source\repos\davidDanielson10to6\davidDanielson10to6\bin\Debug\net6.0-windows\Content\water_sprites.xnb
 C:\Users\Sean G\source\repos\davidDanielson10to6\davidDanielson10to6\bin\Debug\net6.0-windows\Content\worker_sprites.xnb
+C:\Users\Sean G\source\repos\davidDanielson10to6\davidDanielson10to6\obj\Debug\net6.0-windows\davidDanielson10to6.sourcelink.json
