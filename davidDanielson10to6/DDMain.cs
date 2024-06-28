@@ -40,6 +40,7 @@ namespace davidDanielson10to6
 
             Texture2D groundTexture = Content.Load<Texture2D>("groundSprites");
             Texture2D brushTexture = Content.Load<Texture2D>("brushSprites");
+            level = new Level("testLevel", groundTexture, brushTexture);
 
             Texture2D waterTexture = Content.Load<Texture2D>("water_sprites");
             water = new WaterTile(waterTexture, 24);
@@ -65,6 +66,8 @@ namespace davidDanielson10to6
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             water.Draw(_spriteBatch);
+
+            level.Draw(_spriteBatch);
 
             david.Draw(_spriteBatch);
 

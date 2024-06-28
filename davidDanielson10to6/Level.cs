@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using SharpDX.Direct3D9;
 
 namespace davidDanielson10to6
 {
@@ -14,18 +15,19 @@ namespace davidDanielson10to6
         Texture2D ground;
         Texture2D brush;
 
-        private Dictionary<Vector2, int> groundLayer;
-        private Dictionary<Vector2, int> brushLayer;
+        private Dictionary<Vector2, int> groundLayer; //mod 10
+        private Dictionary<Vector2, int> brushLayer; //mod 8
         private Dictionary<int, Vector2> collision;
 
         public Level(string folder, Texture2D Ground, Texture2D Brush)
         {
+
             ground = Ground;
             brush = Brush;
 
-            groundLayer = LoadLayer(folder + "/ground.csv");
-            brushLayer = LoadLayer(folder + "/brush.csv");
-            collision = LoadCollision(folder + "/collision.csv");
+            groundLayer = LoadLayer("../../../Content/" + folder + "/ground.csv");
+            brushLayer = LoadLayer("../../../Content/" + folder + "/brush.csv");
+            collision = LoadCollision("../../../Content/" + folder + "/collision.csv");
         }
 
         private Dictionary<Vector2, int> LoadLayer(string file)
@@ -86,7 +88,30 @@ namespace davidDanielson10to6
 
         public void Draw(SpriteBatch _spriteBatch)
         {
+            _spriteBatch.Begin();
 
+            for(int x = 0; x < 27; x++)
+            {
+                for (int y = 0; y < 18; y++)
+                {
+                    Vector2 position = new Vector2(x, y);
+                    if(groundLayer[position] != -1)
+                    {
+                        Rectangle sourceRectangle = new Rectangle(48 * (groundLayer[position] % 10), 48* (groundLayer[position] / 10), 48, 48);
+
+                        _spriteBatch.Draw(ground, new Rectangle(48 * x, 48 * y, 48, 48), sourceRectangle, Color.White);
+                    }
+
+                    if (brushLayer[position] != -1)
+                    {
+                        Rectangle sourceRectangle = new Rectangle(54 * (brushLayer[position] % 8), 54 * (brushLayer[position] / 8), 54, 54);
+
+                        _spriteBatch.Draw(brush, new Rectangle(48 * x - 3, 48 * y - 3, 54, 54), sourceRectangle, Color.White);
+                    }
+                }
+            }
+
+            _spriteBatch.End();
         }
     }
 }
