@@ -28,7 +28,11 @@ namespace davidDanielson10to6
         int cur = 0; //Keeps track of how many pixels have been traversed in a move
         private bool moving;
 
-        private Vector2 position = new Vector2(96, 106); // David Starts here
+        private Vector2 position = new Vector2(240, 154); // David Starts here
+        public Vector2 positionCoordinates = new Vector2(5, 4);
+
+        public Vector4 collision = new Vector4(0,0,0,0);
+
         private Vector2 incrementor; //movement incrementor
         private Vector2 up = new Vector2(0, -2);
         private Vector2 down = new Vector2(0, 2);
@@ -55,13 +59,23 @@ namespace davidDanielson10to6
 
         public void Update()
         {
+            //Checking for collisions first
+
             //if not moving and movement keys are pressed, start moving in the given direction
             if (!moving && ArrowKeyDown())
             {
+             
                 moving = true;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 {
+                    positionCoordinates.Y++;
+                    if (collision.X == 1)
+                    {
+                        positionCoordinates.Y--;
+                        moving = false;
+                    }
+
                     incrementor = down;
                     direction = 0;
 
@@ -69,6 +83,13 @@ namespace davidDanielson10to6
 
                 else if (Keyboard.GetState().IsKeyDown(Keys.Up))
                 {
+                    positionCoordinates.Y--;
+                    if (collision.Y == 1)
+                    {
+                        positionCoordinates.Y++;
+                        moving = false;
+                    }
+
                     incrementor = up;
                     direction = 1;
 
@@ -76,6 +97,13 @@ namespace davidDanielson10to6
 
                 else if (Keyboard.GetState().IsKeyDown(Keys.Right))
                 {
+                    positionCoordinates.X++;
+                    if (collision.Z == 1)
+                    {
+                        positionCoordinates.X--;
+                        moving = false;
+                    }
+
                     incrementor = right;
                     direction = 2;
 
@@ -83,10 +111,19 @@ namespace davidDanielson10to6
 
                 else if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 {
+                    positionCoordinates.X--;
+                    if (collision.W == 1)
+                    {
+                        positionCoordinates.X++;
+                        moving = false;
+                    }
+
                     incrementor = left;
                     direction = 3;
 
                 }
+
+                
             }
 
             if (moving)
@@ -109,6 +146,7 @@ namespace davidDanielson10to6
 
                 if (cur == block)
                 {
+                    incrementor = new Vector2(0, 0);
                     cur = 0;
                     moving = false;
 

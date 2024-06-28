@@ -17,7 +17,7 @@ namespace davidDanielson10to6
 
         private Dictionary<Vector2, int> groundLayer; //mod 10
         private Dictionary<Vector2, int> brushLayer; //mod 8
-        private Dictionary<int, Vector2> collision;
+        public Dictionary<Vector2, int> collision;
 
         public Level(string folder, Texture2D Ground, Texture2D Brush)
         {
@@ -27,7 +27,7 @@ namespace davidDanielson10to6
 
             groundLayer = LoadLayer("../../../Content/" + folder + "/ground.csv");
             brushLayer = LoadLayer("../../../Content/" + folder + "/brush.csv");
-            collision = LoadCollision("../../../Content/" + folder + "/collision.csv");
+            collision = LoadLayer("../../../Content/" + folder + "/collision.csv");
         }
 
         private Dictionary<Vector2, int> LoadLayer(string file)
