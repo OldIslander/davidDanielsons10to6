@@ -25,9 +25,9 @@ namespace davidDanielson10to6
             ground = Ground;
             brush = Brush;
 
-            groundLayer = LoadLayer("../../../Content/" + folder + "/ground.csv");
-            brushLayer = LoadLayer("../../../Content/" + folder + "/brush.csv");
-            collision = LoadLayer("../../../Content/" + folder + "/collision.csv");
+            groundLayer = LoadLayer("../../../Content/" + folder + "/_ground.csv");
+            brushLayer = LoadLayer("../../../Content/" + folder + "/_brush.csv");
+            collision = LoadLayer("../../../Content/" + folder + "/_collision.csv");
         }
 
         private Dictionary<Vector2, int> LoadLayer(string file)
