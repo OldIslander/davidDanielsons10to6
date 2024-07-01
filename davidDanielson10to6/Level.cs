@@ -15,19 +15,30 @@ namespace davidDanielson10to6
         Texture2D ground;
         Texture2D brush;
 
+        List<Box> boxes;
+
+        Player david;
+
+        WaterTile water;
+
         private Dictionary<Vector2, int> groundLayer; //mod 10
         private Dictionary<Vector2, int> brushLayer; //mod 8
         public Dictionary<Vector2, int> collision;
+        public Dictionary<Vector2, int> boxLayer;
 
-        public Level(string folder, Texture2D Ground, Texture2D Brush)
+
+
+        public Level(string folder, Texture2D Ground, Texture2D Brush, Texture2D playerTexture, Texture2D waterTexture)
         {
-
+            david = new Player(playerTexture);
+            water = new WaterTile(waterTexture, 24);
             ground = Ground;
             brush = Brush;
 
             groundLayer = LoadLayer("../../../Content/" + folder + "/_ground.csv");
             brushLayer = LoadLayer("../../../Content/" + folder + "/_brush.csv");
             collision = LoadLayer("../../../Content/" + folder + "/_collision.csv");
+            boxLayer = LoadLayer("../../../Content/" + folder + "/_boxes.csv");
         }
 
         private Dictionary<Vector2, int> LoadLayer(string file)
@@ -58,36 +69,60 @@ namespace davidDanielson10to6
 
         }
 
-        //Identical algorithm to MapMaker, only this one creates a dictionary with the values and keys reversed.
-        //This will make it easier to check collision
-        private Dictionary<int, Vector2> LoadCollision(string file)
+        public void Update()
         {
-            Dictionary<int, Vector2> collision = new();
 
-            StreamReader reader = new(file);
-            int y = 0;
-            string line;
+            water.Update();
 
-            while ((line = reader.ReadLine()) != null)
+            //Collision checking for our main man David Danielson
+
+            if (collision[david.positionCoordinates] % 4 == 1 || collision[david.positionCoordinates] % 4 == 3)
             {
-                string[] items = line.Split(',');
-
-                for (int x = 0; x < items.Length; x++)
-                {
-                    if (int.TryParse(items[x], out int value))
-                    {
-                        collision[value] = new Vector2(x, y);
-                    }
-                }
-
-                y++;
+                david.collision.Y = 1;
             }
 
-            return collision;
+            else
+            {
+                david.collision.Y = 0;
+            }
+
+            if ((collision[david.positionCoordinates] / 4 == 1 || collision[david.positionCoordinates] / 4 == 3) && collision[david.positionCoordinates] != -1)
+            {
+                david.collision.X = 1;
+            }
+
+            else
+            {
+                david.collision.X = 0;
+            }
+
+            if (collision[david.positionCoordinates] % 4 == 2 || collision[david.positionCoordinates] % 4 == 3)
+            {
+                david.collision.Z = 1;
+            }
+
+            else
+            {
+                david.collision.Z = 0;
+            }
+
+            if ((collision[david.positionCoordinates] / 4 == 2 || collision[david.positionCoordinates] / 4 == 3) && collision[david.positionCoordinates] != -1)
+            {
+                david.collision.W = 1;
+            }
+
+            else
+            {
+                david.collision.W = 0;
+            }
+
+            david.Update();
         }
 
         public void Draw(SpriteBatch _spriteBatch)
         {
+            water.Draw(_spriteBatch);
+
             _spriteBatch.Begin();
 
             for(int x = 0; x < 27; x++)
@@ -112,6 +147,8 @@ namespace davidDanielson10to6
             }
 
             _spriteBatch.End();
+
+            david.Draw(_spriteBatch);
         }
     }
 }
