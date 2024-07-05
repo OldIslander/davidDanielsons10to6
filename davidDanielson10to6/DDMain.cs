@@ -42,8 +42,9 @@ namespace davidDanielson10to6
             Texture2D brushTexture = Content.Load<Texture2D>("brushSprites");
             Texture2D playerTexture = Content.Load<Texture2D>("worker_sprites");
             Texture2D waterTexture = Content.Load<Texture2D>("water_sprites");
+            Texture2D boxTexture = Content.Load<Texture2D>("box_sprites");
             
-            level = new Level("testLevel", groundTexture, brushTexture, playerTexture, waterTexture);
+            level = new Level("testLevel", groundTexture, brushTexture, playerTexture, waterTexture, boxTexture);
         }
 
         protected override void Update(GameTime gameTime)

@@ -27,6 +27,7 @@ namespace davidDanielson10to6
         const int block = 48; // Length/height of 1 tile
         int cur = 0; //Keeps track of how many pixels have been traversed in a move
         private bool moving;
+        private bool pushing;
 
         private Vector2 position = new Vector2(240, 106); // David Starts here
         public Vector2 positionCoordinates = new Vector2(5, 3);
@@ -163,14 +164,12 @@ namespace davidDanielson10to6
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Begin(SpriteSortMode.Deferred, null, Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp, null, null, null, null);
             Rectangle sourceRectangle = new Rectangle(width * currentFrame, height * direction, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 54, 66);
 
 
             _spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
 
-            _spriteBatch.End();
         }
 
 

@@ -4,12 +4,14 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/Sean G/source/repos/davidDanielson10to6/davidDanielson10to6/Content/box_sprites.png</File>
     <File>C:/Users/Sean G/source/repos/davidDanielson10to6/davidDanielson10to6/Content/brushSprites.png</File>
     <File>C:/Users/Sean G/source/repos/davidDanielson10to6/davidDanielson10to6/Content/groundSprites.png</File>
     <File>C:/Users/Sean G/source/repos/davidDanielson10to6/davidDanielson10to6/Content/water_sprites.png</File>
     <File>C:/Users/Sean G/source/repos/davidDanielson10to6/davidDanielson10to6/Content/worker_sprites.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

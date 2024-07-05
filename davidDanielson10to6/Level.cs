@@ -15,7 +15,8 @@ namespace davidDanielson10to6
         Texture2D ground;
         Texture2D brush;
 
-        List<Box> boxes;
+        Texture2D boxTexture;
+        List<Box> boxes = new List<Box>();
 
         Player david;
 
@@ -28,17 +29,20 @@ namespace davidDanielson10to6
 
 
 
-        public Level(string folder, Texture2D Ground, Texture2D Brush, Texture2D playerTexture, Texture2D waterTexture)
+        public Level(string folder, Texture2D Ground, Texture2D Brush, Texture2D playerTexture, Texture2D waterTexture, Texture2D BT)
         {
             david = new Player(playerTexture);
             water = new WaterTile(waterTexture, 24);
             ground = Ground;
             brush = Brush;
+            boxTexture = BT;
 
             groundLayer = LoadLayer("../../../Content/" + folder + "/_ground.csv");
             brushLayer = LoadLayer("../../../Content/" + folder + "/_brush.csv");
             collision = LoadLayer("../../../Content/" + folder + "/_collision.csv");
             boxLayer = LoadLayer("../../../Content/" + folder + "/_boxes.csv");
+
+            MakeObjects(boxLayer);
         }
 
         private Dictionary<Vector2, int> LoadLayer(string file)
@@ -67,6 +71,17 @@ namespace davidDanielson10to6
             return map;
 
 
+        }
+
+        private void MakeObjects(Dictionary<Vector2, int> objectLayer) //Adds objects to the object list
+        {
+            foreach(KeyValuePair<Vector2, int> ob in objectLayer)
+            {
+                if (ob.Value != -1)
+                {
+                    boxes.Add(new Box(boxTexture, ob.Key));
+                }
+            }
         }
 
         public void Update()
@@ -143,12 +158,24 @@ namespace davidDanielson10to6
 
                         _spriteBatch.Draw(brush, new Rectangle(48 * x - 3, 48 * y - 3, 54, 54), sourceRectangle, Color.White);
                     }
+
+                    foreach(Box box in boxes) {
+                        if(box.position.Y == y)
+                        {
+                            box.Draw(_spriteBatch);
+                        }              
+                                     
+                    }
+
+                    if(david.positionCoordinates.Y == y)
+                    {
+                        david.Draw(_spriteBatch);
+                    }
                 }
             }
 
             _spriteBatch.End();
 
-            david.Draw(_spriteBatch);
         }
     }
 }

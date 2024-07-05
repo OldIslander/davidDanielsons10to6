@@ -40,3 +40,4 @@ C:\Users\Sean G\source\repos\davidDanielson10to6\davidDanielson10to6\bin\Debug\n
 C:\Users\Sean G\source\repos\davidDanielson10to6\davidDanielson10to6\obj\Debug\net6.0-windows\davidDanielson10to6.sourcelink.json
 C:\Users\Sean G\source\repos\davidDanielson10to6\davidDanielson10to6\bin\Debug\net6.0-windows\Content\brushSprites.xnb
 C:\Users\Sean G\source\repos\davidDanielson10to6\davidDanielson10to6\bin\Debug\net6.0-windows\Content\groundSprites.xnb
+C:\Users\Sean G\source\repos\davidDanielson10to6\davidDanielson10to6\bin\Debug\net6.0-windows\Content\box_sprites.xnb
