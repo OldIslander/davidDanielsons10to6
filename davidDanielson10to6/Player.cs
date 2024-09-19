@@ -29,7 +29,7 @@ namespace davidDanielson10to6
         private bool moving;
         private bool pushing;
 
-        private Vector2 position = new Vector2(240, 106); // David Starts here
+        private Vector2 position = new Vector2(240, 115); // David Starts here
         public Vector2 positionCoordinates = new Vector2(5, 3);
 
         public Vector4 collision = new Vector4(0,0,0,0);
