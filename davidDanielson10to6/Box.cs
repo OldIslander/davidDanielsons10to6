@@ -26,21 +26,21 @@ namespace davidDanielson10to6
 
         public bool beingPushed = false;
         
-        public Box(Texture2D BoxTexture, Vector2 Position)
+        public Box(Texture2D BoxTexture)
         {
             texture = BoxTexture;
-            position = Position;
+            
         }
 
         public void Update()
         {
         }
 
-        public void Draw(SpriteBatch _spriteBatch)
+        public void Draw(SpriteBatch _spriteBatch, Vector2 Position)
         {
             
             Rectangle sourceRectangle = new Rectangle(0, 0, width, height);
-            Rectangle destinationRectangle = new Rectangle(((int)position.X * 48) -1, ((int)position.Y * 48) -45, 54, 90);
+            Rectangle destinationRectangle = new Rectangle(((int)Position.X * 48) -1, ((int)Position.Y * 48) -45, 54, 90);
 
 
             _spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);

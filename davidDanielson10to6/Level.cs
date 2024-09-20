@@ -25,7 +25,8 @@ namespace davidDanielson10to6
         private Dictionary<Vector2, int> groundLayer; //mod 10
         private Dictionary<Vector2, int> brushLayer; //mod 8
         public Dictionary<Vector2, int> collision;
-        public Dictionary<Vector2, int> boxLayer;
+        //public Dictionary<Vector2, int> boxLayer;
+        public Dictionary<Vector2, Box> boxLayer = new Dictionary<Vector2, Box>();
 
 
 
@@ -40,9 +41,8 @@ namespace davidDanielson10to6
             groundLayer = LoadLayer("../../../Content/" + folder + "/_ground.csv");
             brushLayer = LoadLayer("../../../Content/" + folder + "/_brush.csv");
             collision = LoadLayer("../../../Content/" + folder + "/_collision.csv");
-            boxLayer = LoadLayer("../../../Content/" + folder + "/_boxes.csv");
 
-            MakeObjects(boxLayer);
+            MakeObjects("../../../Content/" + folder + "/_boxes.csv");
         }
 
         private Dictionary<Vector2, int> LoadLayer(string file)
@@ -73,15 +73,28 @@ namespace davidDanielson10to6
 
         }
 
-        private void MakeObjects(Dictionary<Vector2, int> objectLayer) //Adds objects to the object list
+        private void MakeObjects(string file) //Adds objects to the object list
         {
-            foreach(KeyValuePair<Vector2, int> ob in objectLayer)
+
+            StreamReader reader = new(file); //Using this to read in csv file
+            int y = 0;
+            string line;
+
+            while ((line = reader.ReadLine()) != null)
             {
-                if (ob.Value != -1)
+                string[] items = line.Split(',');
+
+                for (int x = 0; x < items.Length; x++)
                 {
-                    boxes.Add(new Box(boxTexture, ob.Key));
+                    if ((int.TryParse(items[x], out int value) && value != -1))
+                    {                  
+                        boxLayer[new Vector2(x, y)] = new Box(boxTexture);
+                    }
                 }
+
+                y++;
             }
+
         }
 
         public void Update()
@@ -159,10 +172,10 @@ namespace davidDanielson10to6
                         _spriteBatch.Draw(brush, new Rectangle(48 * x - 3, 48 * y - 3, 54, 54), sourceRectangle, Color.White);
                     }
 
-                    foreach(Box box in boxes) {
-                        if(box.position.Y == y)
+                    foreach(KeyValuePair<Vector2, Box> box in boxLayer) {
+                        if(box.Key.Y == y)
                         {
-                            box.Draw(_spriteBatch);
+                            box.Value.Draw(_spriteBatch, box.Key);
                         }              
                                      
                     }
