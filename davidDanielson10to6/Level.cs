@@ -97,13 +97,8 @@ namespace davidDanielson10to6
 
         }
 
-        public void Update()
+        public void setPlayerCollision()
         {
-
-            water.Update();
-
-            //Collision checking for our main man David Danielson
-
             if (collision[david.positionCoordinates] % 4 == 1 || collision[david.positionCoordinates] % 4 == 3)
             {
                 david.collision.Y = 1;
@@ -143,7 +138,16 @@ namespace davidDanielson10to6
             {
                 david.collision.W = 0;
             }
+        }
 
+        public void Update()
+        {
+
+            water.Update();
+
+            //Collision checking for our main man David Danielson
+            setPlayerCollision();
+            
             david.Update();
         }
 
