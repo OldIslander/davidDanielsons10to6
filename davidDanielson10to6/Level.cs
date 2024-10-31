@@ -26,7 +26,6 @@ namespace davidDanielson10to6
         private Dictionary<Vector2, int> brushLayer; //mod 8
         public Dictionary<Vector2, int> collision;
         //public Dictionary<Vector2, int> boxLayer;
-        public Dictionary<Vector2, Box> boxLayer = new Dictionary<Vector2, Box>();
 
 
 
@@ -88,7 +87,7 @@ namespace davidDanielson10to6
                 {
                     if ((int.TryParse(items[x], out int value) && value != -1))
                     {                  
-                        boxLayer[new Vector2(x, y)] = new Box(boxTexture);
+                        boxes.Add(new Box(boxTexture, new Vector2(x, y)));
                     }
                 }
 

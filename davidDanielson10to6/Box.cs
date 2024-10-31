@@ -12,7 +12,7 @@ namespace davidDanielson10to6
     public class Box
     {
         private Texture2D texture;
-        public Vector2 position;
+        public Vector2 positionCoordinates;
         private Vector2 offset; //For the pushing animation. When a box is being pushed, this offset will be added to the final resulting position until its position variable is updated. 
         private Vector2 incrementor; //movement incrementor
         
@@ -26,10 +26,10 @@ namespace davidDanielson10to6
 
         public bool beingPushed = false;
         
-        public Box(Texture2D BoxTexture)
+        public Box(Texture2D BoxTexture, Vector2 coordinates)
         {
             texture = BoxTexture;
-            
+            positionCoordinates = coordinates;
         }
 
         public void Update()
